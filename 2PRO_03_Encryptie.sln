@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2PRO_03_Encryptie", "2PRO_03_Encryptie\2PRO_03_Encryptie.csproj", "{49CBE9BD-E9DD-4677-8A57-4E8C79A0DFCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49CBE9BD-E9DD-4677-8A57-4E8C79A0DFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CBE9BD-E9DD-4677-8A57-4E8C79A0DFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CBE9BD-E9DD-4677-8A57-4E8C79A0DFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CBE9BD-E9DD-4677-8A57-4E8C79A0DFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED6D6BDC-DE57-4F60-81DC-F3E0D851D7A8}
+	EndGlobalSection
+EndGlobal
