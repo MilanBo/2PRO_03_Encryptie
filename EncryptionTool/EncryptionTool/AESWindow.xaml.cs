@@ -44,7 +44,8 @@ namespace EncryptionTool
 
             using (Aes myAes = Aes.Create())
             {
-                byte[] encrypted = EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
+                // Convert a C# string to a byte array  
+                byte[] encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
                 string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
                 TxtOutput.Text = roundtrip;
             }
