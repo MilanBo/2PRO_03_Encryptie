@@ -29,7 +29,7 @@ namespace EncryptionTool
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AESWindow windows = new AESWindow();
+            AESWindow windows = new AESWindow(new AESHelper());
             windows.ShowDialog();
         }
         public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)

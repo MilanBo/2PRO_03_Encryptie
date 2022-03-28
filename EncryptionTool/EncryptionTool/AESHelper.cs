@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EncryptionTool
 {
-    public static class AES
+    public class AESHelper
     {
         public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
@@ -46,7 +46,6 @@ namespace EncryptionTool
             // Return the encrypted bytes from the memory stream.
             return encrypted;
         }
-
         public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments.
@@ -86,7 +85,6 @@ namespace EncryptionTool
                     }
                 }
             }
-
             return plaintext;
         }
     }

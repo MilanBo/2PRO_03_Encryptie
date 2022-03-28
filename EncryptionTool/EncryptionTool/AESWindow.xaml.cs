@@ -19,7 +19,7 @@ namespace EncryptionTool
     /// </summary>
     public partial class AESWindow : Window
     {
-        public AESWindow()
+        public AESWindow(AESHelper AESHelper)
         {
             InitializeComponent();
         }
