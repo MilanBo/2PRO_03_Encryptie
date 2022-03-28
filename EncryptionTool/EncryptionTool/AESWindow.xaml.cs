@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace EncryptionTool
 {
@@ -144,6 +145,67 @@ namespace EncryptionTool
             return plaintext;
         }
 
+        private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = "c:\\";
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+            string text = "";
 
+            if (dialog.ShowDialog() == true)
+            {
+                //Get the path of specified file
+                var filePath = dialog.FileName;
+
+                //Read the contents of the file into a stream
+                var fileStream = dialog.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    var fileContent = reader.ReadToEnd();
+                    using (Aes myAes = Aes.Create())
+                    {
+                        byte[] encrypted = EncryptStringToBytes_Aes(fileContent, myAes.Key, myAes.IV);
+                        
+                        for(int i = 0; i < encrypted.Length; i++){
+                            text += encrypted[i].ToString();
+                        }
+                        TxtOutput.Text = text;
+                    }
+                }
+            }
+        }
+
+        private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = "c:\\";
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+
+            if (dialog.ShowDialog() == true)
+            {
+                //Get the path of specified file
+                var filePath = dialog.FileName;
+
+                //Read the contents of the file into a stream
+                var fileStream = dialog.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    string encrypted = reader.ReadToEnd().Trim();
+                    byte[] cipherText = Encoding.ASCII.GetBytes(encrypted);
+                    using (Aes myAes = Aes.Create())
+                    {
+                        string plaintext = DecryptStringFromBytes_Aes(cipherText, myAes.Key, myAes.IV);
+
+                        TxtOutput.Text = plaintext;
+                    }
+                }
+            }
+        }
     }
 }
