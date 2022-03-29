@@ -5,18 +5,10 @@ using System.Text;
 
 namespace EncryptionTool.Helpers
 {
+    // bron :
     //https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
     public class RSAHelper
     {
-        public static string GetKeyString(RSAParameters publicKey)
-        {
-
-            var stringWriter = new System.IO.StringWriter();
-            var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-            xmlSerializer.Serialize(stringWriter, publicKey);
-            return stringWriter.ToString();
-        }
-
         public static string Encrypt(string textToEncrypt, string publicKeyString)
         {
             var bytesToEncrypt = Encoding.UTF8.GetBytes(textToEncrypt);
@@ -45,7 +37,6 @@ namespace EncryptionTool.Helpers
             {
                 try
                 {
-
                     // server decrypting data with private key                    
                     rsa.FromXmlString(privateKeyString);
 
@@ -60,19 +51,12 @@ namespace EncryptionTool.Helpers
                 }
             }
         }
-
-        private static string GenerateTestString()
+        public static string GetKeyString(RSAParameters publicKey)
         {
-            Guid opportinityId = Guid.NewGuid();
-            Guid systemUserId = Guid.NewGuid();
-            string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("opportunityid={0}", opportinityId.ToString());
-            sb.AppendFormat("&systemuserid={0}", systemUserId.ToString());
-            sb.AppendFormat("&currenttime={0}", currentTime);
-
-            return sb.ToString();
+            var stringWriter = new System.IO.StringWriter();
+            var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            xmlSerializer.Serialize(stringWriter, publicKey);
+            return stringWriter.ToString();
         }
     }
 }
