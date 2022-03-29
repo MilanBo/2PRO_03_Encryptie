@@ -1,17 +1,17 @@
-﻿<Window x:Class="EncryptionTool.AESWindow"
+﻿<Window x:Class="EncryptionTool.RSAWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EncryptionTool"
         mc:Ignorable="d"
-        Title="AESWindow" Height="450" Width="800">
+        Title="RSAWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Encrypt" HorizontalAlignment="Left" Margin="106,83,0,0" VerticalAlignment="Top" Click="Encrypt_Click"/>
         <Button Content="Decrypt" HorizontalAlignment="Left" Margin="166,83,0,0" VerticalAlignment="Top" Click="Decrypt_Click"/>
         <TextBox x:Name="TxtInput" HorizontalAlignment="Left" Margin="197,190,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="517,198,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click"/>
-        <Button Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="245,119,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click"/>
+        <Button x:Name="BtnFileEncrypt" Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Click="BtnFileEncrypt_Click" />
+        <Button x:Name="BtnFileDecrypt"  Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="275,119,0,0" VerticalAlignment="Top" Click="BtnFileDecrypt_Click" />
     </Grid>
 </Window>

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using EncryptionTool.Helpers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,8 +30,9 @@ namespace EncryptionTool
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AESWindow windows = new AESWindow();
+            AESWindow windows = new AESWindow(new AESHelper());
             windows.ShowDialog();
         }
+        
     }
 }

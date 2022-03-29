@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Security.Cryptography;
+using Microsoft.Win32;
+using EncryptionTool.Helpers;
 
 namespace EncryptionTool
 {
@@ -19,8 +21,7 @@ namespace EncryptionTool
     /// </summary>
     public partial class AESWindow : Window
     {
-        public string Stringtext = "";
-        public AESWindow()
+        public AESWindow(AESHelper AESHelper)
         {
             InitializeComponent();
         }
@@ -29,7 +30,7 @@ namespace EncryptionTool
         {
             using (Aes myAes = Aes.Create())
             {
-                byte[] encrypted = EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
+                byte[] encrypted = AESHelper.EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
                 string text = "";
                 Stringtext = TxtInput.Text;
                 for (int i = 0 ; i < encrypted.Length; i++)
@@ -47,8 +48,9 @@ namespace EncryptionTool
 
             using (Aes myAes = Aes.Create())
             {
-                byte[] encrypted = EncryptStringToBytes_Aes(Stringtext, myAes.Key, myAes.IV);
-                string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
+                // Convert a C# string to a byte array  
+                byte[] encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
+                string roundtrip = AESHelper.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
                 TxtOutput.Text = roundtrip;
             }
         }
@@ -64,89 +66,68 @@ namespace EncryptionTool
         //        }
         //}
 
-        static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
         {
-            // Check arguments.
-            if (plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-            byte[] encrypted;
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = "c:\\";
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+            string text = "";
 
-            // Create an Aes object
-            // with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            if (dialog.ShowDialog() == true)
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
+                //Get the path of specified file
+                string filePath = dialog.FileName;
 
-                // Create an encryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                //Read the contents of the file into a stream
+                Stream fileStream = dialog.OpenFile();
 
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
+                using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    var fileContent = reader.ReadToEnd();
+                    using (Aes myAes = Aes.Create())
                     {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
+                        byte[] encrypted =  AESHelper.EncryptStringToBytes_Aes(fileContent, myAes.Key, myAes.IV);
+
+                        for (int i = 0; i < encrypted.Length; i++){
+                            text += encrypted[i].ToString();
                         }
-                        encrypted = msEncrypt.ToArray();
+                        TxtOutput.Text = text;
                     }
                 }
             }
-
-            // Return the encrypted bytes from the memory stream.
-            return encrypted;
         }
 
-        static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            // Check arguments.
-            if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = "c:\\";
+            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
 
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-
-            // Create an Aes object
-            // with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            if (dialog.ShowDialog() == true)
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
+                //Get the path of specified file
+                string filePath = dialog.FileName;
 
-                // Create a decryptor to perform the stream transform.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                //Read the contents of the file into a stream
+                Stream fileStream = dialog.OpenFile();
 
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    string encrypted = reader.ReadToEnd();
+                    var base64EncodedBytes = System.Convert.FromBase64String(encrypted);
+                    byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
+                    using (Aes myAes = Aes.Create())
                     {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
+                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(base64EncodedBytes, myAes.Key, myAes.IV);
 
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
+                        TxtOutput.Text = plaintext;
                     }
                 }
             }
-
-            return plaintext;
         }
-
-
     }
 }
