@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Security.Cryptography;
 using Microsoft.Win32;
+using EncryptionTool.Helpers;
 
 namespace EncryptionTool
 {
@@ -75,10 +76,10 @@ namespace EncryptionTool
             if (dialog.ShowDialog() == true)
             {
                 //Get the path of specified file
-                var filePath = dialog.FileName;
+                string filePath = dialog.FileName;
 
                 //Read the contents of the file into a stream
-                var fileStream = dialog.OpenFile();
+                Stream fileStream = dialog.OpenFile();
 
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
@@ -107,10 +108,10 @@ namespace EncryptionTool
             if (dialog.ShowDialog() == true)
             {
                 //Get the path of specified file
-                var filePath = dialog.FileName;
+                string filePath = dialog.FileName;
 
                 //Read the contents of the file into a stream
-                var fileStream = dialog.OpenFile();
+                Stream fileStream = dialog.OpenFile();
 
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
