@@ -19,6 +19,7 @@ namespace EncryptionTool
     /// </summary>
     public partial class AESWindow : Window
     {
+        public string Stringtext = "";
         public AESWindow()
         {
             InitializeComponent();
@@ -30,9 +31,11 @@ namespace EncryptionTool
             {
                 byte[] encrypted = EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
                 string text = "";
+                Stringtext = TxtInput.Text;
                 for (int i = 0 ; i < encrypted.Length; i++)
                 {
                     text += encrypted[i].ToString();
+                    
                 }
                 TxtOutput.Text = text;
             }
@@ -44,7 +47,7 @@ namespace EncryptionTool
 
             using (Aes myAes = Aes.Create())
             {
-                byte[] encrypted = EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
+                byte[] encrypted = EncryptStringToBytes_Aes(Stringtext, myAes.Key, myAes.IV);
                 string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
                 TxtOutput.Text = roundtrip;
             }
