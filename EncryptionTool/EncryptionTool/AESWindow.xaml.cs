@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Security.Cryptography;
 using Microsoft.Win32;
+using EncryptionTool.Helpers;
 
 namespace EncryptionTool
 {
