@@ -116,10 +116,11 @@ namespace EncryptionTool
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
                     string encrypted = reader.ReadToEnd();
-                    byte[] cipherText = Encoding.ASCII.GetBytes(encrypted);
+                    var base64EncodedBytes = System.Convert.FromBase64String(encrypted);
+                    byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
                     using (Aes myAes = Aes.Create())
                     {
-                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(cipherText, myAes.Key, myAes.IV);
+                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(base64EncodedBytes, myAes.Key, myAes.IV);
 
                         TxtOutput.Text = plaintext;
                     }
