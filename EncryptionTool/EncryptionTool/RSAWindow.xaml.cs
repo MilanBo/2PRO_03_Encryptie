@@ -21,5 +21,15 @@ namespace EncryptionTool
         {
             InitializeComponent();
         }
+
+        private void BtnFileEncrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnFileDecrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

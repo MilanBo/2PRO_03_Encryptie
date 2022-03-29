@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EncryptionTool
+namespace EncryptionTool.Helpers
 {
     public class AESHelper
     {

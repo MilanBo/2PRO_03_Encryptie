@@ -13,9 +13,5 @@
         <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="517,198,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click"/>
         <Button Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="245,119,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click"/>
-
-
-
-
     </Grid>
 </Window>

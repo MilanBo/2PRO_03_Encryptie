@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="RSAWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Encrypt" HorizontalAlignment="Left" Margin="106,83,0,0" VerticalAlignment="Top" Click="Encrypt_Click"/>
+        <Button Content="Decrypt" HorizontalAlignment="Left" Margin="166,83,0,0" VerticalAlignment="Top" Click="Decrypt_Click"/>
+        <TextBox x:Name="TxtInput" HorizontalAlignment="Left" Margin="197,190,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="517,198,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnFileEncrypt" Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Click="BtnFileEncrypt_Click" />
+        <Button x:Name="BtnFileDecrypt"  Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="275,119,0,0" VerticalAlignment="Top" Click="BtnFileDecrypt_Click" />
     </Grid>
 </Window>
