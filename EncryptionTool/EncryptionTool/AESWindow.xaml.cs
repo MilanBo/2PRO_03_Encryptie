@@ -32,7 +32,7 @@ namespace EncryptionTool
             {
                 byte[] encrypted = AESHelper.EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
                 string text = "";
-                Stringtext = TxtInput.Text;
+                //Stringtext = TxtInput.Text;
                 for (int i = 0 ; i < encrypted.Length; i++)
                 {
                     text += encrypted[i].ToString();

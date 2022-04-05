@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -23,9 +24,10 @@ namespace EncryptionTool
             InitializeComponent();
         }
 
-        public static byte[] CreateByteArrayFromFile(string fileName)
+        public void CreateByteArrayFromFile(string fileName)
         {
             byte[] returnValue = null;
+            string text = "";
             if (File.Exists(fileName))
             {
                 using (var ms = new MemoryStream())
@@ -35,14 +37,39 @@ namespace EncryptionTool
                         fs.CopyTo(ms);
                     }
                     returnValue = ms.ToArray();
+                    //TxtResult.Text = returnValue.ToString();
                 }
+                for(int i = 0;i < returnValue.Length; i++)
+                {
+                    text += returnValue[i].ToString();
+                }
+                TxtResult.Text = text;
             }
-            return returnValue;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CreateByteArrayFromFile();
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                //Filter = "Alle bestanden (*.*)|*.*|Tekstbestanden (*.txt) |*.txt",
+                FilterIndex = 2, // index start vanaf 1, niet 0 hier! 2 wil zeggen hier filteren op .txt
+                //FileName = "punten.txt",
+                Multiselect = true, // je kan meerdere bestanden selecteren (true, anders false)
+
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) // start in My Documents
+                                                                  // == OF ==
+                                                                  // InitialDirectory = System.IO.Path.GetFullPath(@"..\..\Bestanden"), // volledig pad
+                                                                  // == OF ==
+                                                                  // InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
+            };
+            if (ofd.ShowDialog() == true) // als de OpenFileDialog getoond kan worden
+            {
+                string bestandsnaam = ofd.FileName;
+                //TxtResult.Text = bestandsnaam;
+                CreateByteArrayFromFile(bestandsnaam);
+            }
+
         }
     }
 }

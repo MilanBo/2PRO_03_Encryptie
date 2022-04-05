@@ -33,6 +33,11 @@ namespace EncryptionTool
             AESWindow windows = new AESWindow(new AESHelper());
             windows.ShowDialog();
         }
-        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AESImageWindow window = new AESImageWindow();
+            window.ShowDialog();
+        }
     }
 }
