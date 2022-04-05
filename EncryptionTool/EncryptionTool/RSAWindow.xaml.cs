@@ -32,7 +32,6 @@ namespace EncryptionTool
             CryptoServiceProvider = new RSACryptoServiceProvider(2048); //2048 - Długość klucza
             PrivateKey = CryptoServiceProvider.ExportParameters(true); //Generowanie klucza prywatnego
             PublicKey = CryptoServiceProvider.ExportParameters(false); //Generowanie klucza publiczny
-
             /*
             string publicKeyString = RSAHelper.GetKeyString(PublicKey);
             string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
