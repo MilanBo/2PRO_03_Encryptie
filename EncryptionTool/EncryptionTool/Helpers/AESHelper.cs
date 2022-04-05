@@ -25,7 +25,7 @@ namespace EncryptionTool.Helpers
             {
                 aesAlg.Key = Key;
                 aesAlg.IV = IV;
-                aesAlg.Padding = PaddingMode.ISO10126 ;
+                aesAlg.Padding= PaddingMode.Zeros;
 
                 // Create an encryptor to perform the stream transform.
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
@@ -67,7 +67,7 @@ namespace EncryptionTool.Helpers
             {
                 aesAlg.Key = Key;
                 aesAlg.IV = IV;
-                aesAlg.Padding = PaddingMode.PKCS7;
+                aesAlg.Padding = PaddingMode.Zeros;
                 // Create a decryptor to perform the stream transform.
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
