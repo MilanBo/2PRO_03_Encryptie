@@ -71,8 +71,8 @@ namespace EncryptionTool
             {
                 // Convert a C# string to a byte array  
                 // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
-                TxtOutput.Text = roundtrip;
+                string roundtrip = RSAHelper.Decrypt(TxtOutput.Text, privateKeyString);
+                TxtInput.Text = roundtrip;
             }
         }
     }
