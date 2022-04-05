@@ -134,5 +134,33 @@ namespace EncryptionTool
                 }
             }
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Alle bestanden (*.*)|*.*|Tekstbestanden (*.txt)|*.txt",
+                FilterIndex = 2,
+                Title = "Geef een bestandsnaam op",
+                OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
+                AddExtension = true, // extensie wordt toegevoegd
+                DefaultExt = "txt", // standaard extensie
+                FileName = "Voorbeeld.txt",
+                InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
+            };
+            if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
+            {
+                // volledig pad en bestandsnaam opvragen
+                string padEnBestandsnaam = sfd.FileName;
+                // enkel pad opvragen
+                string pad = System.IO.Path.GetDirectoryName(sfd.FileName);
+
+                // enkel bestandsnaam opvragen
+                string bestandsnaam = System.IO.Path.GetFileName(sfd.FileName);
+
+                // huidige map opvragen
+                string huidigeMap = System.IO.Directory.GetCurrentDirectory();
+            }
+        }
     }
 }
