@@ -95,7 +95,7 @@ namespace EncryptionTool
                             text += encrypted[i];
                         }
                         TxtOutput.Text = text;
-                        using (StreamWriter writer = new StreamWriter("D:/Desktop/encrypted.txt"))
+                        using (StreamWriter writer = new StreamWriter(dialog.FileName+"encrypted.txt"))
                         {
                             writer.WriteLine(System.Convert.ToBase64String(encrypted));
                         }
@@ -130,7 +130,12 @@ namespace EncryptionTool
                         string plaintext = AESHelper.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
 
                         TxtOutput.Text = cipherText;
+                        using (StreamWriter writer = new StreamWriter(dialog.FileName + "encrypted.txt"))
+                        {
+                            writer.WriteLine(cipherText);
+                        }
                     }
+                    
                 }
             }
         }
