@@ -85,15 +85,20 @@ namespace EncryptionTool
 
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    var fileContent = reader.ReadToEnd();
+                    byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
+                    string fileContent = System.Convert.ToBase64String(plainTextBytes);
                     using (Aes myAes = Aes.Create())
                     {
                         byte[] encrypted =  AESHelper.EncryptStringToBytes_Aes(fileContent, myAes.Key, myAes.IV);
 
                         for (int i = 0; i < encrypted.Length; i++){
-                            text += encrypted[i].ToString();
+                            text += encrypted[i];
                         }
                         TxtOutput.Text = text;
+                        using (StreamWriter writer = new StreamWriter("D:/Desktop/encrypted.txt"))
+                        {
+                            writer.WriteLine(System.Convert.ToBase64String(encrypted));
+                        }
                     }
                 }
             }
@@ -117,14 +122,14 @@ namespace EncryptionTool
 
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    string encrypted = reader.ReadToEnd();
-                    var base64EncodedBytes = System.Convert.FromBase64String(encrypted);
-                    byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
+                    byte[] encrypted = System.Convert.FromBase64String(reader.ReadToEnd());
+                    var cipherText = System.Text.Encoding.UTF8.GetString(encrypted);
+                    //byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
                     using (Aes myAes = Aes.Create())
                     {
-                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(base64EncodedBytes, myAes.Key, myAes.IV);
+                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
 
-                        TxtOutput.Text = plaintext;
+                        TxtOutput.Text = cipherText;
                     }
                 }
             }

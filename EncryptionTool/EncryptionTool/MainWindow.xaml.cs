@@ -34,10 +34,10 @@ namespace EncryptionTool
             windows.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void BtnRSAWindow_Click(object sender, RoutedEventArgs e)
         {
-            AESImageWindow window = new AESImageWindow();
-            window.ShowDialog();
+            RSAWindow windows = new RSAWindow();
+            windows.ShowDialog();
         }
     }
 }
