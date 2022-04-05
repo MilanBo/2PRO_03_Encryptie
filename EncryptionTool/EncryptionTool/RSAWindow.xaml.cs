@@ -22,9 +22,21 @@ namespace EncryptionTool
     /// </summary>
     public partial class RSAWindow : Window
     {
+        private RSACryptoServiceProvider CryptoServiceProvider { get; set; }
+        private RSAParameters PrivateKey { get; set; }
+        private RSAParameters PublicKey { get; set; }
+
         public RSAWindow()
         {
             InitializeComponent();
+            CryptoServiceProvider = new RSACryptoServiceProvider(2048); //2048 - Długość klucza
+            PrivateKey = CryptoServiceProvider.ExportParameters(true); //Generowanie klucza prywatnego
+            PublicKey = CryptoServiceProvider.ExportParameters(false); //Generowanie klucza publiczny
+
+            /*
+            string publicKeyString = RSAHelper.GetKeyString(PublicKey);
+            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
+            */
         }
 
         private void BtnFileEncrypt_Click(object sender, RoutedEventArgs e)
@@ -39,9 +51,10 @@ namespace EncryptionTool
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
+            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             using (RSA myRSA = RSA.Create())
             {
-                var encrypted = RSAHelper.Encrypt(TxtInput.Text, "12345");
+                var encrypted = RSAHelper.Encrypt(TxtInput.Text, privateKeyString);
                 string text = "";
                 for (int i = 0; i < encrypted.Length; i++)
                 {
@@ -53,11 +66,12 @@ namespace EncryptionTool
 
         private void Decrypt_Click(object sender, RoutedEventArgs e)
         {
+            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             using (RSA myAes = RSA.Create())
             {
                 // Convert a C# string to a byte array  
                 // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, "12345");
+                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
                 TxtOutput.Text = roundtrip;
             }
         }
