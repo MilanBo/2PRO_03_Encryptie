@@ -9,7 +9,7 @@ namespace EncryptionTool.Helpers
     //https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
     public class RSAHelper
     {
-        // needed to use Decrypt - and Encrypt string(){}
+        // needed to use before Decrypt - and Encrypt string(){}
         public static string GetKeyString(RSAParameters publicKey)
         {
             var stringWriter = new System.IO.StringWriter();
