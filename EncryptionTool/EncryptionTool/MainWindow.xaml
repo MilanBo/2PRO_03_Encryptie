@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EncryptionTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sleutels Aanmaken" Height="450" Width="800">
     <Grid>
-        <Button Content="AES Window" HorizontalAlignment="Left" Margin="111,70,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button x:Name="BtnRSAWindow" Content="RSA Window" HorizontalAlignment="Left" Margin="360,75,0,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" />
+        <Button x:Name="BtnAESWindow" Content="Genereer AES Sleutels" HorizontalAlignment="Left" Margin="50,283,0,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="299"/>
+        <Button x:Name="BtnRSAWindow" Content="Genereer RSA Sleutels" HorizontalAlignment="Left" Margin="429,283,0,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" Height="69" Width="299" />
+        <Label x:Name="LblSuperSleutel" Content="Naam van de sleutel" HorizontalAlignment="Left" Height="31" Margin="62,117,0,0" VerticalAlignment="Top" Width="255" FontSize="15"/>
+        <TextBox x:Name="TxtSuperSleutel" HorizontalAlignment="Left" Height="44" Margin="62,153,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
 
     </Grid>
 </Window>
