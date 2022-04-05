@@ -33,6 +33,11 @@ namespace EncryptionTool
             AESWindow windows = new AESWindow(new AESHelper());
             windows.ShowDialog();
         }
-        
+
+        private void BtnRSAWindow_Click(object sender, RoutedEventArgs e)
+        {
+            RSAWindow windows = new RSAWindow();
+            windows.ShowDialog();
+        }
     }
 }
