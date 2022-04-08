@@ -15,8 +15,8 @@
         <Button x:Name="Btn_AES_ChooseFileToDecrypt" Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="179,277,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click" Width="186" Height="48" HorizontalContentAlignment="Left"/>
         <Button x:Name="Btn_AES_Save" Content="Save" HorizontalAlignment="Left" Margin="516,236,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611"/>
         <Image x:Name="Img_AES_EncryptionArrow" HorizontalAlignment="Left" Height="78" Margin="365,113,0,0" VerticalAlignment="Top" Width="117" Source="/Images/EncryptiePijl.png"/>
-        <Label x:Name="LblAESInput" Content="Input:" HorizontalAlignment="Left" Height="37" Margin="155,71,0,0" VerticalAlignment="Top" Width="64" FontSize="20"/>
-        <Label x:Name="LblAESOutput" Content="Output:" HorizontalAlignment="Left" Height="37" Margin="482,71,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
+        <Label x:Name="Lbl_AES_Input" Content="Input:" HorizontalAlignment="Left" Height="37" Margin="155,71,0,0" VerticalAlignment="Top" Width="64" FontSize="20"/>
+        <Label x:Name="Lbl_AES_Output" Content="Output:" HorizontalAlignment="Left" Height="37" Margin="482,71,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
         <Image x:Name="Img_AES_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="48" Margin="301,277,0,0" VerticalAlignment="Top" Width="65" Source="/Images/FileSearchFolder.png"/>
         <Image x:Name="Img_AES_ChooseFileToEncrypt" HorizontalAlignment="Left" Height="48" Margin="1422,641,0,0" VerticalAlignment="Top" Width="65" Source="/FileSearchFolder.png"/>
         <Image x:Name="Img_AES_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="48" Margin="301,217,0,0" VerticalAlignment="Top" Width="65" Source="/Images/FileSearchFolder.png"/>
