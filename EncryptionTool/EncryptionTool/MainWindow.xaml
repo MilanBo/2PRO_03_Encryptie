@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="Sleutels Aanmaken" Height="450" Width="800">
     <Grid>
-        <Button x:Name="BtnAESWindow" Content="Genereer AES Sleutels" HorizontalAlignment="Left" Margin="50,283,0,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="299"/>
-        <Button x:Name="BtnRSAWindow" Content="Genereer RSA Sleutels" HorizontalAlignment="Left" Margin="429,283,0,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" Height="69" Width="299" />
-        <Label x:Name="LblSuperSleutel" Content="Naam van de sleutel" HorizontalAlignment="Left" Height="31" Margin="62,117,0,0" VerticalAlignment="Top" Width="255" FontSize="15"/>
-        <TextBox x:Name="TxtSuperSleutel" HorizontalAlignment="Left" Height="44" Margin="62,153,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
+        <Border x:Name="BrdrNaamSleutel" BorderThickness="1" BorderBrush="#FFB9B0B0" HorizontalAlignment="Left" Height="85" Margin="50,132,0,0" VerticalAlignment="Top" Width="434"/>
+        <Button x:Name="BtnAESWindow" Content="Genereer AES Sleutels -&gt;" HorizontalAlignment="Left" Margin="50,283,0,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="299" FontSize="24" FontFamily="SimSun" Background="#FF90E200"/>
+        <Button x:Name="BtnRSAWindow" Content="Genereer RSA Sleutels -&gt;" HorizontalAlignment="Left" Margin="429,283,0,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" Height="69" Width="299" FontFamily="SimSun" FontSize="24" Background="#FFDC7BD9" />
+        <TextBox x:Name="TxtNaamSleutel" HorizontalAlignment="Left" Height="44" Margin="62,153,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
+        <Label x:Name="LblNaamSleutel" Content="Naam van de sleutel:" HorizontalAlignment="Left" Height="31" Margin="62,117,0,0" VerticalAlignment="Top" Width="150" FontSize="15" Background="White"/>
+        <Label Content="Welkom!" HorizontalAlignment="Left" Height="60" Margin="50,30,0,0" VerticalAlignment="Top" Width="150" FontSize="35"/>
 
     </Grid>
 </Window>

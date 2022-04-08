@@ -7,12 +7,18 @@
         mc:Ignorable="d"
         Title="AESWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Encrypt" HorizontalAlignment="Left" Margin="106,83,0,0" VerticalAlignment="Top" Click="Encrypt_Click"/>
-        <Button Content="Decrypt" HorizontalAlignment="Left" Margin="166,83,0,0" VerticalAlignment="Top" Click="Decrypt_Click"/>
-        <TextBox x:Name="TxtInput" HorizontalAlignment="Left" Margin="197,190,0,0" Text="A" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="517,198,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="106,119,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click"/>
-        <Button Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="245,119,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="470,128,0,0" VerticalAlignment="Top" Width="38" Height="26" Click="Save_Click"/>
+        <Button x:Name="Btn_AES_ChooseFileToEncrypt" Content="Choose File To Encrypt" HorizontalAlignment="Left" Margin="179,217,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click" Height="48" Width="186" HorizontalContentAlignment="Left"/>
+        <Button x:Name="BtnEncrypt" Content="Encrypt -&gt;" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Click="Encrypt_Click" Height="48" Width="71" Background="#FF11C3F7"/>
+        <Button x:Name="BtnDecrypt" Content="Decrypt -&gt;" HorizontalAlignment="Left" Margin="60,162,0,0" VerticalAlignment="Top" Click="Decrypt_Click" Width="71" Height="48" Background="#FFC70909"/>
+        <TextBox x:Name="TxtInput" HorizontalAlignment="Left" Margin="155,113,0,0" Text="A" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="78"/>
+        <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="482,113,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="78"/>
+        <Button x:Name="Btn_AES_ChooseFileToDecrypt" Content="Choose File To Decrypt" HorizontalAlignment="Left" Margin="179,277,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click" Width="186" Height="48" HorizontalContentAlignment="Left"/>
+        <Button x:Name="Btn_AES_Save" Content="Save" HorizontalAlignment="Left" Margin="516,236,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611"/>
+        <Image x:Name="Img_AES_EncryptionArrow" HorizontalAlignment="Left" Height="78" Margin="365,113,0,0" VerticalAlignment="Top" Width="117" Source="/Images/EncryptiePijl.png"/>
+        <Label x:Name="LblAESInput" Content="Input:" HorizontalAlignment="Left" Height="37" Margin="155,71,0,0" VerticalAlignment="Top" Width="64" FontSize="20"/>
+        <Label x:Name="LblAESOutput" Content="Output:" HorizontalAlignment="Left" Height="37" Margin="482,71,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
+        <Image x:Name="Img_AES_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="48" Margin="301,277,0,0" VerticalAlignment="Top" Width="65" Source="/Images/FileSearchFolder.png"/>
+        <Image x:Name="Img_AES_ChooseFileToEncrypt" HorizontalAlignment="Left" Height="48" Margin="1422,641,0,0" VerticalAlignment="Top" Width="65" Source="/FileSearchFolder.png"/>
+        <Image x:Name="Img_AES_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="48" Margin="301,217,0,0" VerticalAlignment="Top" Width="65" Source="/Images/FileSearchFolder.png"/>
     </Grid>
 </Window>
