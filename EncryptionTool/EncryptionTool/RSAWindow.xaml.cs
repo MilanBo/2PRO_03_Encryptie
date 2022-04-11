@@ -75,13 +75,8 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    using (RSA myAes = RSA.Create())
-                    {
-                        // Convert a C# string to a byte array  
-                        // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
                         string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), privateKeyString);
                         TxtOutput.Text = ciphertext;
-                    }
                 }
             }
         }
@@ -97,13 +92,8 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    using (RSA myAes = RSA.Create())
-                    {
-                        // Convert a C# string to a byte array  
-                        // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
                         string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), privateKeyString);
                         TxtOutput.Text = plaintext;
-                    }
                 }
             }
         }
