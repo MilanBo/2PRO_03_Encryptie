@@ -30,14 +30,18 @@ namespace EncryptionTool
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AESWindow windows = new AESWindow();
-            windows.ShowDialog();
+            this.Hide();
+            RSAWindow windows = new RSAWindow();
+            windows.Closed += (s, args) => this.Show();
+            windows.Show();
         }
 
         private void BtnRSAWindow_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             RSAWindow windows = new RSAWindow();
-            windows.ShowDialog();
+            windows.Closed += (s, args) => this.Show();
+            windows.Show();
         }
     }
 }
