@@ -15,6 +15,7 @@
             <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="482,113,48,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="78"/>
             <Button x:Name="Btn_AES_ChooseFileToDecrypt" Content="Decrypt File" HorizontalAlignment="Left" Margin="260,277,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click" Width="105" Height="48" HorizontalContentAlignment="Left" Background="DarkRed" Foreground="White"/>
             <Button x:Name="Btn_AES_Save" Content="Save" HorizontalAlignment="Left" Margin="516,236,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611" FontSize="20"/>
+            <Button x:Name="Btn_AES_SaveKey" Content="Save Key" HorizontalAlignment="Left" Margin="516,296,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="SaveKey_Click" Background="#FF55E611" FontSize="20"/>
 
             <Image x:Name="Img_AES_EncryptionArrow" HorizontalAlignment="Left" Height="78" Margin="365,113,0,0" VerticalAlignment="Top" Width="117" Source="/Images/EncryptiePijl.png"/>
 

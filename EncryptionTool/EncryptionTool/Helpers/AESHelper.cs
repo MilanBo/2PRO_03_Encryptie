@@ -10,7 +10,7 @@ namespace EncryptionTool.Helpers
     /// bron : https://www.youtube.com/watch?v=LOmgFxPHop0
     public static class AESHelper
     {
-        private static AesCryptoServiceProvider CryptoServicePr = new AesCryptoServiceProvider()
+        public static AesCryptoServiceProvider CryptoServicePr = new AesCryptoServiceProvider()
         {
             BlockSize = 128,
             KeySize = 128,

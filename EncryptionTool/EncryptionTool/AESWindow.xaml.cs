@@ -119,5 +119,36 @@ namespace EncryptionTool
             }
         }
         #endregion
+
+        private void SaveKey_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Alle bestanden (*.*)|*.*|Tekstbestanden (*.txt)|*.txt",
+                FilterIndex = 2,
+                Title = "Geef een bestandsnaam op",
+                OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
+                AddExtension = true, // extensie wordt toegevoegd
+                DefaultExt = "txt", // standaard extensie
+                FileName = "EncryptedData.txt",
+                InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
+            };
+            if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
+            {
+                // volledig pad en bestandsnaam opvragen
+                string bestandsnaam = sfd.FileName;
+
+                if (!File.Exists(bestandsnaam)) // controleer of bestand nog niet bestaat
+                {
+                    using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
+                    {
+                        byte[] keyGenerated = AESHelper.CryptoServicePr.Key;
+                        var Key = Convert.ToBase64String(keyGenerated);
+                        sw.WriteLine(Key);
+                    }
+                }
+
+            }
+        }
     }
 }
