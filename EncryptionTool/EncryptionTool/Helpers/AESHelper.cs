@@ -13,7 +13,7 @@ namespace EncryptionTool.Helpers
         private static AesCryptoServiceProvider CryptoServicePr = new AesCryptoServiceProvider()
         {
             BlockSize = 128,
-            KeySize = 256,
+            KeySize = 128,
             Mode = CipherMode.CBC,
             Padding = PaddingMode.PKCS7,
         };
