@@ -9,6 +9,14 @@ namespace EncryptionTool.Helpers
     //https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
     public class RSAHelper
     {
+        // needed to use before Decrypt - and Encrypt string(){}
+        public static string GetKeyString(RSAParameters publicKey)
+        {
+            var stringWriter = new System.IO.StringWriter();
+            var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
+            xmlSerializer.Serialize(stringWriter, publicKey);
+            return stringWriter.ToString();
+        }
         public static string Encrypt(string textToEncrypt, string publicKeyString)
         {
             var bytesToEncrypt = Encoding.UTF8.GetBytes(textToEncrypt);
@@ -51,12 +59,6 @@ namespace EncryptionTool.Helpers
                 }
             }
         }
-        public static string GetKeyString(RSAParameters publicKey)
-        {
-            var stringWriter = new System.IO.StringWriter();
-            var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-            xmlSerializer.Serialize(stringWriter, publicKey);
-            return stringWriter.ToString();
-        }
+        
     }
 }

@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EncryptiePijl.png" />
+    <None Remove="FileSearchFolder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\FileSearchFolder.png" />
+    <Resource Include="Images\EncryptiePijl.png" />
   </ItemGroup>
 
 </Project>

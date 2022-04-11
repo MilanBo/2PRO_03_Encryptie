@@ -19,120 +19,73 @@ namespace EncryptionTool
     /// <summary>
     /// Interaction logic for AESWindow.xaml
     /// </summary>
+    /// bron : https://www.youtube.com/watch?v=LOmgFxPHop0
     public partial class AESWindow : Window
     {
-        public AESWindow(AESHelper AESHelper)
+        public AESWindow()
         {
             InitializeComponent();
+            AESHelper.Init();
         }
 
+        #region simple En-/Decrypt
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
-            using (Aes myAes = Aes.Create())
-            {
-                byte[] encrypted = AESHelper.EncryptStringToBytes_Aes(TxtInput.Text, myAes.Key, myAes.IV);
-                string text = "";
-                //Stringtext = TxtInput.Text;
-                for (int i = 0 ; i < encrypted.Length; i++)
-                {
-                    text += encrypted[i].ToString();
-                    
-                }
-                TxtOutput.Text = text;
-            }
-
+           TxtOutput.Text = AESHelper.Encrypt(TxtInput.Text);
         }
 
         private void Decrypt_Click(object sender, RoutedEventArgs e)
         {
-
-            using (Aes myAes = Aes.Create())
-            {
-                // Convert a C# string to a byte array  
-                byte[] encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = AESHelper.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
-                TxtOutput.Text = roundtrip;
-            }
+          // Convert a C# string to a byte array  
+          TxtOutput.Text = AESHelper.Decrypt(TxtInput.Text);
         }
+        #endregion
 
-
-
-        //// Decrypt the bytes to a string.
-        //string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
-
-        ////Display the original data and the decrypted data.
-        //Console.WriteLine("Original:   {0}", original);
-        //            Console.WriteLine("Round Trip: {0}", roundtrip);
-        //        }
-        //}
-
+        #region File En-/Decrypt
         private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = "c:\\";
-            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            dialog.FilterIndex = 2;
-            dialog.RestoreDirectory = true;
-            string text = "";
-
-            if (dialog.ShowDialog() == true)
+            OpenFileDialog ofd = new OpenFileDialog()
             {
-                //Get the path of specified file
-                string filePath = dialog.FileName;
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+            };
 
-                //Read the contents of the file into a stream
-                Stream fileStream = dialog.OpenFile();
-
-                using (StreamReader reader = new StreamReader(fileStream))
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
-                    string fileContent = System.Convert.ToBase64String(plainTextBytes);
-                    using (Aes myAes = Aes.Create())
-                    {
-                        byte[] encrypted =  AESHelper.EncryptStringToBytes_Aes(fileContent, myAes.Key, myAes.IV);
+                        string encrypted = AESHelper.Encrypt(reader.ReadToEnd());
 
-                        for (int i = 0; i < encrypted.Length; i++){
-                            text += encrypted[i];
+                        TxtOutput.Text = encrypted;
+                        using (StreamWriter writer = new StreamWriter(ofd.FileName+"encrypted.txt"))
+                        {
+                            writer.WriteLine(encrypted);
                         }
-                        TxtOutput.Text = text;
-
-                    }
                 }
             }
         }
 
         private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = "c:\\";
-            dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            dialog.FilterIndex = 2;
-            dialog.RestoreDirectory = true;
-
-            if (dialog.ShowDialog() == true)
+            OpenFileDialog ofd = new OpenFileDialog() 
             {
-                //Get the path of specified file
-                string filePath = dialog.FileName;
+                InitialDirectory= Environment.SpecialFolder.DesktopDirectory.ToString() 
+            };
 
-                //Read the contents of the file into a stream
-                Stream fileStream = dialog.OpenFile();
-
-                using (StreamReader reader = new StreamReader(fileStream))
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader sr = new StreamReader(ofd.FileName))
                 {
-                    //byte[] encrypted = System.Convert.FromBase64String(reader.ReadToEnd());
-                    byte[] encrypted = Encoding.ASCII.GetBytes(reader.ReadToEnd());
-                    var cipherText = System.Text.Encoding.UTF8.GetString(encrypted);
-                    //byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
                     using (Aes myAes = Aes.Create())
                     {
-                        string plaintext = AESHelper.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
+                        string plaintext = AESHelper.Decrypt(sr.ReadToEnd());
 
-                        TxtOutput.Text = cipherText;
+                        TxtOutput.Text = plaintext;
+                        using (StreamWriter writer = new StreamWriter(ofd.FileName + "encrypted.txt"))
+                        {
+                            writer.WriteLine(plaintext);
+                        }
                     }
-                    //using (StreamWriter writer = new StreamWriter(dialog.FileName + "Encrypted.txt"))
-                    //{
-                    //    writer.WriteLine(System.Convert.ToBase64String(encrypted));
-                    //}
+                    
                 }
             }
         }
@@ -165,5 +118,6 @@ namespace EncryptionTool
 
             }
         }
+        #endregion
     }
 }

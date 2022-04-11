@@ -32,21 +32,10 @@ namespace EncryptionTool
             CryptoServiceProvider = new RSACryptoServiceProvider(2048); //2048 - Długość klucza
             PrivateKey = CryptoServiceProvider.ExportParameters(true); //Generowanie klucza prywatnego
             PublicKey = CryptoServiceProvider.ExportParameters(false); //Generowanie klucza publiczny
-
             /*
             string publicKeyString = RSAHelper.GetKeyString(PublicKey);
             string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             */
-        }
-
-        private void BtnFileEncrypt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnFileDecrypt_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
@@ -74,6 +63,21 @@ namespace EncryptionTool
                 string roundtrip = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
                 TxtOutput.Text = roundtrip;
             }
+        }
+
+        private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
