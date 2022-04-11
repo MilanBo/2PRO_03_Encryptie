@@ -25,7 +25,7 @@ namespace EncryptionTool
         private RSACryptoServiceProvider CryptoServiceProvider { get; set; }
         private RSAParameters PrivateKey { get; set; }
         private RSAParameters PublicKey { get; set; }
-
+        private string privateKeyString { get; set; }
         public RSAWindow()
         {
             InitializeComponent();
@@ -36,11 +36,11 @@ namespace EncryptionTool
             string publicKeyString = RSAHelper.GetKeyString(PublicKey);
             string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             */
+            privateKeyString = RSAHelper.GetKeyString(PrivateKey);
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
-            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             using (RSA myRSA = RSA.Create())
             {
                 var encrypted = RSAHelper.Encrypt(TxtInput.Text, privateKeyString);
@@ -55,7 +55,6 @@ namespace EncryptionTool
 
         private void Decrypt_Click(object sender, RoutedEventArgs e)
         {
-            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
             using (RSA myAes = RSA.Create())
             {
                 // Convert a C# string to a byte array  
@@ -76,13 +75,12 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                    string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
                     using (RSA myAes = RSA.Create())
                     {
                         // Convert a C# string to a byte array  
                         // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                        string roundtrip = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
-                        TxtOutput.Text = roundtrip;
+                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), privateKeyString);
+                        TxtOutput.Text = ciphertext;
                     }
                 }
             }
@@ -90,7 +88,24 @@ namespace EncryptionTool
 
         private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+            };
 
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader reader = new StreamReader(ofd.FileName))
+                {
+                    using (RSA myAes = RSA.Create())
+                    {
+                        // Convert a C# string to a byte array  
+                        // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
+                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), privateKeyString);
+                        TxtOutput.Text = plaintext;
+                    }
+                }
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
