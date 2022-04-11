@@ -81,6 +81,7 @@ namespace EncryptionTool.Helpers
                             // Read the decrypted bytes from the decrypting stream
                             // and place them in a string.
                             plaintext = srDecrypt.ReadToEnd();
+
                         }
                     }
                 }

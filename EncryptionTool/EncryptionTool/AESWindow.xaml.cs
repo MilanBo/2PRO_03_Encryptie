@@ -95,10 +95,7 @@ namespace EncryptionTool
                             text += encrypted[i];
                         }
                         TxtOutput.Text = text;
-                        using (StreamWriter writer = new StreamWriter("D:/Desktop/encrypted.txt"))
-                        {
-                            writer.WriteLine(System.Convert.ToBase64String(encrypted));
-                        }
+
                     }
                 }
             }
@@ -122,7 +119,8 @@ namespace EncryptionTool
 
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
-                    byte[] encrypted = System.Convert.FromBase64String(reader.ReadToEnd());
+                    //byte[] encrypted = System.Convert.FromBase64String(reader.ReadToEnd());
+                    byte[] encrypted = Encoding.ASCII.GetBytes(reader.ReadToEnd());
                     var cipherText = System.Text.Encoding.UTF8.GetString(encrypted);
                     //byte[] cipherText = Encoding.UTF8.GetBytes(encrypted);
                     using (Aes myAes = Aes.Create())
@@ -131,6 +129,10 @@ namespace EncryptionTool
 
                         TxtOutput.Text = cipherText;
                     }
+                    //using (StreamWriter writer = new StreamWriter(dialog.FileName + "Encrypted.txt"))
+                    //{
+                    //    writer.WriteLine(System.Convert.ToBase64String(encrypted));
+                    //}
                 }
             }
         }
@@ -145,21 +147,22 @@ namespace EncryptionTool
                 OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
                 AddExtension = true, // extensie wordt toegevoegd
                 DefaultExt = "txt", // standaard extensie
-                FileName = "Voorbeeld.txt",
+                FileName = "EncryptedData.txt",
                 InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
             };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
             {
                 // volledig pad en bestandsnaam opvragen
-                string padEnBestandsnaam = sfd.FileName;
-                // enkel pad opvragen
-                string pad = System.IO.Path.GetDirectoryName(sfd.FileName);
+                string bestandsnaam = sfd.FileName;
 
-                // enkel bestandsnaam opvragen
-                string bestandsnaam = System.IO.Path.GetFileName(sfd.FileName);
+                if (!File.Exists(bestandsnaam)) // controleer of bestand nog niet bestaat
+                {
+                    using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
+                    {
+                        sw.WriteLine(TxtOutput.Text);
+                    }
+                }
 
-                // huidige map opvragen
-                string huidigeMap = System.IO.Directory.GetCurrentDirectory();
             }
         }
     }
