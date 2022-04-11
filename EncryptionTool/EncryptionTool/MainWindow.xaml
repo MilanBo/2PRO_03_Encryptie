@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:EncryptionTool"
         mc:Ignorable="d"
         Title="Sleutels Aanmaken" Height="450" Width="800">
-    <Grid>
-        <Border x:Name="BrdrNaamSleutel" BorderThickness="1" BorderBrush="#FFB9B0B0" HorizontalAlignment="Left" Height="85" Margin="50,132,0,0" VerticalAlignment="Top" Width="414"/>
-        <Button x:Name="BtnAESWindow" Content="Genereer AES Sleutels -&gt;" HorizontalAlignment="Left" Margin="50,283,0,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="299" FontSize="24" FontFamily="SimSun" Background="#FF90E200"/>
-        <Button x:Name="BtnRSAWindow" Content="Genereer RSA Sleutels -&gt;" HorizontalAlignment="Left" Margin="429,283,0,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" Height="69" Width="299" FontFamily="SimSun" FontSize="24" Background="#FFDC7BD9" />
-        <TextBox x:Name="TxtNaamSleutel" HorizontalAlignment="Left" Height="44" Margin="62,153,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
-        <Label x:Name="LblNaamSleutel" Content="Naam van de sleutel:" HorizontalAlignment="Left" Height="31" Margin="62,117,0,0" VerticalAlignment="Top" Width="150" FontSize="15" Background="White"/>
-        <Label x:Name="LblWelkom" Content="Welkom!" HorizontalAlignment="Left" Height="60" Margin="50,30,0,0" VerticalAlignment="Top" Width="150" FontSize="35"/>
-
-    </Grid>
+    <Viewbox>
+        <Grid>
+            <Border x:Name="BrdrNaamSleutel" BorderThickness="1" BorderBrush="#FFB9B0B0" HorizontalAlignment="Left" Height="85" Margin="50,102,0,0" VerticalAlignment="Top" Width="414"/>
+            <Button x:Name="BtnAESWindow" Content="Genereer AES Sleutels -&gt;" HorizontalAlignment="Left" Margin="50,253,10,0" VerticalAlignment="Top" Click="Button_Click" Height="69" Width="299" FontSize="24" FontFamily="SimSun" Background="#FF90E200"/>
+            <Button x:Name="BtnRSAWindow" Content="Genereer RSA Sleutels -&gt;" HorizontalAlignment="Left" Margin="429,253,50,0" VerticalAlignment="Top" Click="BtnRSAWindow_Click" Height="69" Width="299" FontFamily="SimSun" FontSize="24" Background="#FFDC7BD9" />
+            <TextBox x:Name="TxtNaamSleutel" HorizontalAlignment="Left" Height="44" Margin="62,123,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
+            <Label x:Name="LblNaamSleutel" Content="Naam van de sleutel:" HorizontalAlignment="Left" Height="31" Margin="62,87,0,0" VerticalAlignment="Top" Width="150" FontSize="15" Background="White"/>
+            <Label x:Name="LblWelkom" Content="Welkom!" HorizontalAlignment="Left" Height="60" Margin="50,0,0,0" VerticalAlignment="Top" Width="150" FontSize="35"/>
+        </Grid>
+    </Viewbox>
 </Window>
