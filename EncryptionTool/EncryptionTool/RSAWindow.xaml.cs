@@ -38,16 +38,6 @@ namespace EncryptionTool
             */
         }
 
-        private void BtnFileEncrypt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnFileDecrypt_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
             string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
@@ -73,6 +63,21 @@ namespace EncryptionTool
                 string roundtrip = RSAHelper.Decrypt(TxtOutput.Text, privateKeyString);
                 TxtInput.Text = roundtrip;
             }
+        }
+
+        private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
