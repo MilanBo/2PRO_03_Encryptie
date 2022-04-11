@@ -9,6 +9,13 @@ namespace EncryptionTool.Helpers
     //https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
     public class RSAHelper
     {
+        private static RSACryptoServiceProvider CryptoServicePr = new RSACryptoServiceProvider(2048);
+
+        private static  RSAParameters PrivateKey = CryptoServicePr.ExportParameters(true);
+        private static RSAParameters PublicKey = CryptoServicePr.ExportParameters(false);
+
+        public static string PrivateKeyString = RSAHelper.GetKeyString(PrivateKey);
+
         // needed to use before Decrypt - and Encrypt string(){}
         public static string GetKeyString(RSAParameters publicKey)
         {
