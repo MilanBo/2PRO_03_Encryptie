@@ -13,14 +13,15 @@
         <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="482,113,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="78"/>
         <Button x:Name="Btn_RSA_ChooseFileToEncrypt" Content="Encrypt File" HorizontalAlignment="Left" Margin="260,212,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click" Height="48" Width="105" HorizontalContentAlignment="Left" Background="#FF11C3F7"/>
         <Button x:Name="Btn_RSA_ChooseFileToDecrypt" Content="Decrypt File" HorizontalAlignment="Left" Margin="260,277,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click" Width="105" Height="48" HorizontalContentAlignment="Left" Background="DarkRed" Foreground="White"/>
-        <Button x:Name="Btn_RSA_Save" Content="Save" HorizontalAlignment="Left" Margin="516,236,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611"/>
-        
+        <Button x:Name="Btn_RSA_Save" Content="Save" HorizontalAlignment="Left" Margin="516,236,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611" FontSize="20"/>
+
         <Image x:Name="Img_RSA_EncryptionArrow" HorizontalAlignment="Left" Height="78" Margin="365,113,0,0" VerticalAlignment="Top" Width="117" Source="/Images/EncryptiePijl.png"/>
-        
+
         <Label x:Name="Lbl_RSA_Input" Content="Input:" HorizontalAlignment="Left" Height="37" Margin="155,71,0,0" VerticalAlignment="Top" Width="64" FontSize="20"/>
         <Label x:Name="Lbl_RSA_Output" Content="Output:" HorizontalAlignment="Left" Height="37" Margin="482,71,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
-        <Image x:Name="Img_RSA_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,289,0,0" VerticalAlignment="Top" Width="34" Source="/Images/FileSearchFolder.png" RenderTransformOrigin="0.529,0.668"/>
-        <Image x:Name="Img_RSA_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,229,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
-        
+        <Image x:Name="Img_RSA_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="36" Margin="331,288,0,0" VerticalAlignment="Top" Width="34" Source="/Images/FileSearchFolder.png" RenderTransformOrigin="0.529,0.668"/>
+        <Image x:Name="Img_RSA_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,224,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
+        <Label x:Name="Lbl_RSA_ArrowTitle" Content="RSA" HorizontalAlignment="Left" Height="39" Margin="400,113,0,0" VerticalAlignment="Top" Width="47" FontSize="20"/>
+        <Label x:Name="Lbl_RSA_Title" Content="RSA" HorizontalAlignment="Left" Height="39" Margin="44,23,0,0" VerticalAlignment="Top" Width="53" FontSize="24"/>
     </Grid>
 </Window>
