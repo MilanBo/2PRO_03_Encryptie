@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="AESWindow" Height="450" Width="800">
     <Viewbox>
-        <Grid>
-            <Button x:Name="Btn_AES_ChooseFileToEncrypt" Content="Encrypt File" HorizontalAlignment="Left" Margin="260,207,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click" Height="47" Width="105" HorizontalContentAlignment="Left" Background="#FF11C3F7" />
-            <Button x:Name="BtnEncrypt" Content="Encrypt -&gt;" HorizontalAlignment="Left" Margin="155,207,0,0" VerticalAlignment="Top" Click="Encrypt_Click" Height="48" Width="71" Background="#FF11C3F7" />
+        <Grid Height="345">
+            <Button x:Name="Btn_AES_ChooseFileToEncrypt" Content="Encrypt File" HorizontalAlignment="Left" Margin="260,212,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click" Height="48" Width="105" HorizontalContentAlignment="Left" Background="#FF11C3F7" />
+            <Button x:Name="BtnEncrypt" Content="Encrypt -&gt;" HorizontalAlignment="Left" Margin="155,212,0,0" VerticalAlignment="Top" Click="Encrypt_Click" Height="48" Width="71" Background="#FF11C3F7" />
             <Button x:Name="BtnDecrypt" Content="Decrypt -&gt;" HorizontalAlignment="Left" Margin="155,277,0,0" VerticalAlignment="Top" Click="Decrypt_Click" Width="71" Height="48" Background="DarkRed" Foreground="White"/>
             <TextBox x:Name="TxtInput" HorizontalAlignment="Left" Margin="155,113,0,0" Text="A" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="78"/>
             <TextBox x:Name="TxtOutput" HorizontalAlignment="Left" Margin="482,113,48,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="78"/>
@@ -21,10 +21,10 @@
 
             <Label x:Name="Lbl_AES_Input" Content="Input:" HorizontalAlignment="Left" Height="37" Margin="155,71,0,0" VerticalAlignment="Top" Width="64" FontSize="20"/>
             <Label x:Name="Lbl_AES_Output" Content="Output:" HorizontalAlignment="Left" Height="37" Margin="482,71,0,0" VerticalAlignment="Top" Width="79" FontSize="20"/>
-            <Image x:Name="Img_AES_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="36" Margin="333,289,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
-            <Image x:Name="Img_AES_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,218,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
+            <Image x:Name="Img_AES_ChooseFileToDecryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,289,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
+            <Image x:Name="Img_AES_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,224,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
             <Label x:Name="Lbl_AES_ArrowTitle" Content="AES" HorizontalAlignment="Left" Height="39" Margin="400,113,0,0" VerticalAlignment="Top" Width="47" FontSize="20"/>
-            <Label x:Name="Lbl_AES_Title" Content="AES" HorizontalAlignment="Left" Height="39" Margin="48,23,0,0" VerticalAlignment="Top" Width="49" FontSize="24"/>
+            <Label x:Name="Lbl_AES_Title" Content="AES" HorizontalAlignment="Left" Height="39" Margin="44,26,0,0" VerticalAlignment="Top" Width="51" FontSize="24"/>
             <Label x:Name="TxtKey" Content="" Margin="0,0,403,309"></Label>
         </Grid>
     </Viewbox>
