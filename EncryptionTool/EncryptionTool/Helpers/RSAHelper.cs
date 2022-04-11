@@ -6,7 +6,7 @@ using System.Text;
 namespace EncryptionTool.Helpers
 {
     // bron :
-    //https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
+    // https://gist.github.com/gashupl/27e4de6bd8f021f3d61b3122e6bbf775
     public class RSAHelper
     {
         private static RSACryptoServiceProvider CryptoServicePr = new RSACryptoServiceProvider(2048);
@@ -46,8 +46,6 @@ namespace EncryptionTool.Helpers
 
         public static string Decrypt(string textToDecrypt, string privateKeyString)
         {
-            var bytesToDescrypt = Encoding.UTF8.GetBytes(textToDecrypt);
-
             using (var rsa = new RSACryptoServiceProvider(2048))
             {
                 try
