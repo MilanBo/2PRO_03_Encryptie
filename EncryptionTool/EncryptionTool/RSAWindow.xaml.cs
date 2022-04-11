@@ -67,7 +67,24 @@ namespace EncryptionTool
 
         private void ChooseFileToEncrypt_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+            };
 
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader reader = new StreamReader(ofd.FileName))
+                {
+                    string encrypted = RSAHelper.Encrypt(reader.ReadToEnd(), RSAHelper.GetKeyString(PublicKey));
+
+                    TxtOutput.Text = encrypted;
+                    using (StreamWriter writer = new StreamWriter(ofd.FileName + "encrypted.txt"))
+                    {
+                        writer.WriteLine(encrypted);
+                    }
+                }
+            }
         }
 
         private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
