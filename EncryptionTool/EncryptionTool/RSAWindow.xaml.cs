@@ -22,28 +22,16 @@ namespace EncryptionTool
     /// </summary>
     public partial class RSAWindow : Window
     {
-        private RSACryptoServiceProvider CryptoServiceProvider { get; set; }
-        private RSAParameters PrivateKey { get; set; }
-        private RSAParameters PublicKey { get; set; }
-        private string privateKeyString { get; set; }
         public RSAWindow()
         {
             InitializeComponent();
-            CryptoServiceProvider = new RSACryptoServiceProvider(2048); //2048 - Długość klucza
-            PrivateKey = CryptoServiceProvider.ExportParameters(true); //Generowanie klucza prywatnego
-            PublicKey = CryptoServiceProvider.ExportParameters(false); //Generowanie klucza publiczny
-            /*
-            string publicKeyString = RSAHelper.GetKeyString(PublicKey);
-            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
-            */
-            privateKeyString = RSAHelper.GetKeyString(PrivateKey);
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
             using (RSA myRSA = RSA.Create())
             {
-                var encrypted = RSAHelper.Encrypt(TxtInput.Text, privateKeyString);
+                var encrypted = RSAHelper.Encrypt(TxtInput.Text,RSAHelper.PrivateKeyString);
                 string text = "";
                 for (int i = 0; i < encrypted.Length; i++)
                 {
@@ -59,7 +47,7 @@ namespace EncryptionTool
             {
                 // Convert a C# string to a byte array  
                 // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
+                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, RSAHelper.PrivateKeyString);
                 TxtOutput.Text = roundtrip;
             }
         }
@@ -75,7 +63,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), privateKeyString);
+                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
                         TxtOutput.Text = ciphertext;
                 }
             }
@@ -92,7 +80,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), privateKeyString);
+                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
                         TxtOutput.Text = plaintext;
                 }
             }
