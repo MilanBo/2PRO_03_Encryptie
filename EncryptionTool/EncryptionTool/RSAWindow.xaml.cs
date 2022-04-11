@@ -90,7 +90,37 @@ namespace EncryptionTool
 
         private void ChooseFileToDecrypt_Click(object sender, RoutedEventArgs e)
         {
+            string privateKeyString = RSAHelper.GetKeyString(PrivateKey);
+            //using (RSA myAes = RSA.Create())
+            //{
+                // Convert a C# string to a byte array
+                // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
+                string plaintext = RSAHelper.Decrypt(TxtInput.Text, privateKeyString);
+                TxtOutput.Text = plaintext;
+            //}
+            //RSAHelper.Decrypt();
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+            };
 
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader sr = new StreamReader(ofd.FileName))
+                {
+                    //using (Aes myAes = Aes.Create())
+                    //{
+                    //    string plaintext = AESHelper.Decrypt(sr.ReadToEnd());
+
+                    //    TxtOutput.Text = plaintext;
+                    //    using (StreamWriter writer = new StreamWriter(ofd.FileName + "encrypted.txt"))
+                    //    {
+                    //        writer.WriteLine(plaintext);
+                    //    }
+                    //}
+
+                }
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
