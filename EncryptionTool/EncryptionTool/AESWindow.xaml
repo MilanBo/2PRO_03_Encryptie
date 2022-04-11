@@ -25,6 +25,7 @@
             <Image x:Name="Img_AES_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,218,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
             <Label x:Name="Lbl_AES_ArrowTitle" Content="AES" HorizontalAlignment="Left" Height="39" Margin="400,113,0,0" VerticalAlignment="Top" Width="47" FontSize="20"/>
             <Label x:Name="Lbl_AES_Title" Content="AES" HorizontalAlignment="Left" Height="39" Margin="48,23,0,0" VerticalAlignment="Top" Width="49" FontSize="24"/>
+            <Label x:Name="TxtKey" Content=""></Label>
         </Grid>
     </Viewbox>
 </Window>

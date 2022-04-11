@@ -22,6 +22,16 @@ namespace EncryptionTool.Helpers
             CryptoServicePr.GenerateIV();
             CryptoServicePr.GenerateKey();
         }
+        public static string GetKey()
+        {
+            string keystr = "";
+            byte[] key = CryptoServicePr.Key;
+            foreach (var item in key)
+            {
+                keystr += item;
+            }
+            return keystr;
+        }
 
         public static string Encrypt(string plaintext)
         {
