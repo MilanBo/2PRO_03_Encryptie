@@ -26,6 +26,7 @@ namespace EncryptionTool
         {
             InitializeComponent();
             AESHelper.Init();
+            TxtKey.Content = AESHelper.GetKey();
         }
 
         #region simple En-/Decrypt
