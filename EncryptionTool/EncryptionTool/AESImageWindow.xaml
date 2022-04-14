@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="AESImageWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="Btn_AES_ChooseImageFile" Content="Choose File" HorizontalAlignment="Left" Margin="95,90,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <TextBox x:Name="TxtResult" HorizontalAlignment="Left" Margin="251,218,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Btn_AES_ChooseImageFile" Content="Choose File" HorizontalAlignment="Left" Margin="164,202,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <TextBox x:Name="TxtResult" HorizontalAlignment="Left" Margin="400,0,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Center" Width="309" Height="228"/>
 
     </Grid>
 </Window>
