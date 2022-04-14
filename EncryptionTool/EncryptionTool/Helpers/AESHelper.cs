@@ -39,6 +39,36 @@ namespace EncryptionTool.Helpers
             }
             return keystr;
         }
+        public static string GetIV()
+        {
+            string ivstr = "";
+            byte[] IV = CryptoServicePr.IV;
+            foreach (var item in IV)
+            {
+                ivstr += item;
+            }
+            return ivstr;
+        }
+        public static string SetKey()
+        {
+            string keystr = "";
+            byte[] key = CryptoServicePr.Key;
+            foreach (var item in key)
+            {
+                keystr += item;
+            }
+            return keystr;
+        }
+        public static string SetIV()
+        {
+            string ivstr = "";
+            byte[] IV = CryptoServicePr.IV;
+            foreach (var item in IV)
+            {
+                ivstr += item;
+            }
+            return ivstr;
+        }
 
         public static string Encrypt(string plaintext)
         {

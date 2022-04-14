@@ -22,11 +22,13 @@ namespace EncryptionTool
     /// bron : https://www.youtube.com/watch?v=LOmgFxPHop0
     public partial class AESWindow : Window
     {
-        public AESWindow()
+        public string Name { get; set; }
+        public AESWindow(string name)
         {
             InitializeComponent();
             AESHelper.Init();
             TxtKey.Content = AESHelper.GetKey();
+            Name = name;
         }
 
         #region simple En-/Decrypt
@@ -144,9 +146,33 @@ namespace EncryptionTool
                     using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
                     {
                         sw.WriteLine(AESHelper.GetKey());
+                        sw.WriteLine(AESHelper.GetIV());
                     }
                 }
             }
              }
+
+        private void BtnGetKey_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+            };
+
+            if (ofd.ShowDialog() == true)
+            {
+                using (StreamReader sr = new StreamReader(ofd.FileName))
+                {
+                    using (Aes myAes = Aes.Create())
+                    {
+                        string Keystr = sr.ReadLine();
+                        string IVstr = sr.ReadLine();
+
+
+                    }
+
+                }
+            }
         }
+    }
     }
