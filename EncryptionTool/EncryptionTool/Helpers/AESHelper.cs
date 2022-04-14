@@ -19,8 +19,15 @@ namespace EncryptionTool.Helpers
         };
         public static void Init()
         {
-            CryptoServicePr.GenerateIV();
-            CryptoServicePr.GenerateKey();
+            if (CryptoServicePr.IV == null)
+            {
+                CryptoServicePr.GenerateIV();
+                CryptoServicePr.GenerateKey();
+            }
+            else
+            {
+
+            }
         }
         public static string GetKey()
         {
