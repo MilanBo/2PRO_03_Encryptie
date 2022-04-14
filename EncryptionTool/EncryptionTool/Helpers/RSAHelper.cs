@@ -24,6 +24,7 @@ namespace EncryptionTool.Helpers
             xmlSerializer.Serialize(stringWriter, publicKey);
             return stringWriter.ToString();
         }
+
         public static string Encrypt(string textToEncrypt, string publicKeyString)
         {
             var bytesToEncrypt = Encoding.UTF8.GetBytes(textToEncrypt);

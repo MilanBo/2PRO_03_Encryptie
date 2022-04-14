@@ -131,7 +131,7 @@ namespace EncryptionTool
                  OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
                  AddExtension = true, // extensie wordt toegevoegd
                  DefaultExt = "txt", // standaard extensie
-                 FileName = "EncryptedData.txt",
+                 FileName = "Key.txt",
                  InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
              };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
