@@ -14,6 +14,7 @@
             <TextBox x:Name="TxtNaamSleutel" HorizontalAlignment="Left" Height="44" Margin="62,123,0,0" Text="SuperSleutel" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" FontSize="24"/>
             <Label x:Name="LblNaamSleutel" Content="Naam van de sleutel:" HorizontalAlignment="Left" Height="31" Margin="62,87,0,0" VerticalAlignment="Top" Width="150" FontSize="15" Background="White"/>
             <Label x:Name="LblWelkom" Content="Welkom!" HorizontalAlignment="Left" Height="60" Margin="50,0,0,0" VerticalAlignment="Top" Width="150" FontSize="35"/>
+            <Button x:Name="Btn_Verlaat" Content="Verlaat" HorizontalAlignment="Left" Height="30" Margin="660,23,0,0" VerticalAlignment="Top" Width="78" Click="Btn_Verlaat_Click"/>
         </Grid>
     </Viewbox>
 </Window>

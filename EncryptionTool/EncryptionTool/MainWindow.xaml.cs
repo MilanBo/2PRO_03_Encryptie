@@ -43,5 +43,10 @@ namespace EncryptionTool
             windows.Closed += (s, args) => this.Show();
             windows.Show();
         }
+
+        private void Btn_Verlaat_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

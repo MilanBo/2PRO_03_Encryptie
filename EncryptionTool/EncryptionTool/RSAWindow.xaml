@@ -16,6 +16,7 @@
         <Button x:Name="Btn_RSA_ChooseFileToDecrypt" Content="Decrypt File" HorizontalAlignment="Left" Margin="260,277,0,0" VerticalAlignment="Top" Click="ChooseFileToDecrypt_Click" Width="105" Height="48" HorizontalContentAlignment="Left" Background="DarkRed" Foreground="White"/>
         <Button x:Name="Btn_RSA_Save" Content="Save" HorizontalAlignment="Left" Margin="516,212,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="Save_Click" Background="#FF55E611" FontSize="20"/>
         <Button x:Name="Btn_RSA_SaveKey" Content="Save Key" HorizontalAlignment="Left" Margin="516,277,0,0" VerticalAlignment="Top" Width="142" Height="48" Click="SaveKey_Click" Background="#FF55E611" FontSize="20"/>
+        <Button x:Name="Btn_RSA_GoBack" Content="&lt;- Back" HorizontalAlignment="Left" Height="24" Margin="18,39,0,0" VerticalAlignment="Top" Width="66" Click="Button_Click"/>
 
         <Image x:Name="Img_RSA_EncryptionArrow" HorizontalAlignment="Left" Height="78" Margin="365,113,0,0" VerticalAlignment="Top" Width="117" Source="/Images/EncryptiePijl.png"/>
 
