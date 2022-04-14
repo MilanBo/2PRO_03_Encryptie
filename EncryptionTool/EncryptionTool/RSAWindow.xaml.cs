@@ -22,9 +22,12 @@ namespace EncryptionTool
     /// </summary>
     public partial class RSAWindow : Window
     {
-        public RSAWindow()
+        string _key;
+        public RSAWindow(string key)
         {
             InitializeComponent();
+            TxtKey.Content = RSAHelper.PrivateKeyString;
+            _key = key;
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
@@ -109,6 +112,35 @@ namespace EncryptionTool
                     using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
                     {
                         sw.WriteLine(TxtOutput.Text);
+                    }
+                }
+
+            }
+        }
+
+        private void SaveKey_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Alle bestanden (*.*)|*.*|Tekstbestanden (*.xml)|*.xml",
+                FilterIndex = 2,
+                Title = "Geef een bestandsnaam op",
+                OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
+                AddExtension = true, // extensie wordt toegevoegd
+                DefaultExt = "xml", // standaard extensie
+                FileName = $"{_key}RSA.xml",
+                InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
+            };
+            if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
+            {
+                // volledig pad en bestandsnaam opvragen
+                string bestandsnaam = sfd.FileName;
+
+                if (!File.Exists(bestandsnaam)) // controleer of bestand nog niet bestaat
+                {
+                    using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
+                    {
+                        sw.WriteLine(TxtKey.Content);
                     }
                 }
 
