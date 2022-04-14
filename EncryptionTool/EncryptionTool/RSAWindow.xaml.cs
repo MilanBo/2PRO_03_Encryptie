@@ -34,7 +34,7 @@ namespace EncryptionTool
         {
             using (RSA myRSA = RSA.Create())
             {
-                var encrypted = RSAHelper.Encrypt(TxtInput.Text,RSAHelper.PrivateKeyString);
+                var encrypted = RSAHelper.Encrypt(TxtInput.Text, TxtKey.Content.ToString());
                 string text = "";
                 for (int i = 0; i < encrypted.Length; i++)
                 {
@@ -50,7 +50,7 @@ namespace EncryptionTool
             {
                 // Convert a C# string to a byte array  
                 // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, RSAHelper.PrivateKeyString);
+                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, TxtKey.Content.ToString());
                 TxtOutput.Text = roundtrip;
             }
         }
@@ -66,7 +66,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
+                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), TxtKey.Content.ToString());
                         TxtOutput.Text = ciphertext;
                 }
             }
@@ -83,7 +83,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
+                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), TxtKey.Content.ToString());
                         TxtOutput.Text = plaintext;
                 }
             }
@@ -100,7 +100,7 @@ namespace EncryptionTool
                 AddExtension = true, // extensie wordt toegevoegd
                 DefaultExt = "txt", // standaard extensie
                 FileName = "EncryptedData.txt",
-                InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
+                InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString() // onder onze \Debug map
             };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
             {
@@ -146,5 +146,22 @@ namespace EncryptionTool
 
             }
         }
+
+        private void ChooseKeyToEncrypt_Click(object sender, RoutedEventArgs e)
+        {
+            
+                OpenFileDialog ofd = new OpenFileDialog()
+                {
+                    InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString()
+                };
+
+                if (ofd.ShowDialog() == true)
+                {
+                    using (StreamReader reader = new StreamReader(ofd.FileName))
+                    {
+                    TxtKey.Content = reader.ReadToEnd();
+                    }
+                }
+            }
     }
 }

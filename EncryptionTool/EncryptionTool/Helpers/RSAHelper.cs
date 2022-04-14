@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows;
 
 namespace EncryptionTool.Helpers
 {
@@ -59,12 +60,37 @@ namespace EncryptionTool.Helpers
                     var decryptedData = Encoding.UTF8.GetString(decryptedBytes);
                     return decryptedData.ToString();
                 }
+                catch (System.Security.Cryptography.CryptographicException)
+                {
+                    MessageBox.Show("foutieve sleutel", "Fout", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return "";
+                }
                 finally
                 {
                     rsa.PersistKeyInCsp = false;
                 }
             }
         }
-        
+
+        public static string EncryptWithKey(string textToEncrypt, string publicKeyString)
+        {
+            var bytesToEncrypt = Encoding.UTF8.GetBytes(textToEncrypt);
+
+            using (var rsa = new RSACryptoServiceProvider(2048))
+            {
+                try
+                {
+                    rsa.FromXmlString(publicKeyString.ToString());
+                    var encryptedData = rsa.Encrypt(bytesToEncrypt, true);
+                    var base64Encrypted = Convert.ToBase64String(encryptedData);
+                    return base64Encrypted;
+                }
+                finally
+                {
+                    rsa.PersistKeyInCsp = false;
+                }
+            }
+        }
+
     }
 }
