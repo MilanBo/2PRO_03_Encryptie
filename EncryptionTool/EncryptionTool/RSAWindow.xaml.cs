@@ -22,19 +22,18 @@ namespace EncryptionTool
     /// </summary>
     public partial class RSAWindow : Window
     {
-        string _key;
+        string KeyFileName;
         public RSAWindow(string key)
         {
             InitializeComponent();
-            TxtKey.Content = RSAHelper.PrivateKeyString;
-            _key = key;
+            KeyFileName = key;
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
         {
             using (RSA myRSA = RSA.Create())
             {
-                var encrypted = RSAHelper.Encrypt(TxtInput.Text, TxtKey.Content.ToString());
+                var encrypted = RSAHelper.Encrypt(TxtInput.Text, RSAHelper.PrivateKeyString);
                 string text = "";
                 for (int i = 0; i < encrypted.Length; i++)
                 {
@@ -50,7 +49,7 @@ namespace EncryptionTool
             {
                 // Convert a C# string to a byte array  
                 // var encrypted = Encoding.ASCII.GetBytes(TxtInput.Text);
-                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, TxtKey.Content.ToString());
+                string roundtrip = RSAHelper.Decrypt(TxtInput.Text, RSAHelper.PrivateKeyString);
                 TxtOutput.Text = roundtrip;
             }
         }
@@ -66,7 +65,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), TxtKey.Content.ToString());
+                        string ciphertext = RSAHelper.Encrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
                         TxtOutput.Text = ciphertext;
                 }
             }
@@ -83,7 +82,7 @@ namespace EncryptionTool
             {
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
-                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), TxtKey.Content.ToString());
+                        string plaintext = RSAHelper.Decrypt(reader.ReadToEnd(), RSAHelper.PrivateKeyString);
                         TxtOutput.Text = plaintext;
                 }
             }
@@ -128,7 +127,7 @@ namespace EncryptionTool
                 OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
                 AddExtension = true, // extensie wordt toegevoegd
                 DefaultExt = "xml", // standaard extensie
-                FileName = $"{_key}RSA.xml",
+                FileName = $"{KeyFileName}_RSAKey.xml",
                 InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
             };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
@@ -140,7 +139,7 @@ namespace EncryptionTool
                 {
                     using (StreamWriter sw = File.CreateText(bestandsnaam)) // maak StreamWriter en maak bestand aan
                     {
-                        sw.WriteLine(TxtKey.Content);
+                        sw.WriteLine(RSAHelper.PrivateKeyString);
                     }
                 }
 
@@ -159,7 +158,7 @@ namespace EncryptionTool
                 {
                     using (StreamReader reader = new StreamReader(ofd.FileName))
                     {
-                    TxtKey.Content = reader.ReadToEnd();
+                        KeyFileName = reader.ReadToEnd();
                     }
                 }
             }

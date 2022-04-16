@@ -22,13 +22,12 @@ namespace EncryptionTool
     /// bron : https://www.youtube.com/watch?v=LOmgFxPHop0
     public partial class AESWindow : Window
     {
-        public string Name { get; set; }
-        public AESWindow(string name)
+        public string KeyFileName;
+        public AESWindow(string key)
         {
             InitializeComponent();
             AESHelper.Init();
-            TxtKey.Content = AESHelper.GetKey();
-            Name = name;
+            KeyFileName = key;
         }
 
         #region simple En-/Decrypt
@@ -133,7 +132,7 @@ namespace EncryptionTool
                  OverwritePrompt = true, // bevestiging vragen bij overschrijven van een bestand
                  AddExtension = true, // extensie wordt toegevoegd
                  DefaultExt = "txt", // standaard extensie
-                 FileName = "Key.txt",
+                 FileName = $"{KeyFileName}_AESKey.txt",
                  InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
              };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden

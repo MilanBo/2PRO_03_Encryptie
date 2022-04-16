@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="RSAWindow" Height="450" Width="800">
 
-    <Grid Height="345">
+    <Grid Margin="0,10,0,14">
         <Button x:Name="Btn_RSA_ChooseFileToEncrypt" Content="Encrypt File" HorizontalAlignment="Left" Margin="260,212,0,0" VerticalAlignment="Top" Click="ChooseFileToEncrypt_Click" Height="48" Width="105" HorizontalContentAlignment="Left" Background="#FF11C3F7" />
         <Button x:Name="BtnFileEncrypt" Content="Encrypt -&gt;" HorizontalAlignment="Left" Margin="155,212,0,0" VerticalAlignment="Top" Click="Encrypt_Click" Height="48" Width="71" Background="#FF11C3F7" />
         <Button x:Name="BtnFileDecrypt" Content="Decrypt -&gt;" HorizontalAlignment="Left" Margin="155,277,0,0" VerticalAlignment="Top" Click="Decrypt_Click" Width="71" Height="48" Background="DarkRed" Foreground="White"/>
@@ -26,8 +26,6 @@
         <Image x:Name="Img_RSA_ChooseFileToEncryptFolder" HorizontalAlignment="Left" Height="36" Margin="332,224,0,0" VerticalAlignment="Top" Width="33" Source="/Images/FileSearchFolder.png"/>
         <Label x:Name="Lbl_RSA_ArrowTitle" Content="RSA" HorizontalAlignment="Left" Height="39" Margin="400,113,0,0" VerticalAlignment="Top" Width="47" FontSize="20"/>
         <Label x:Name="Lbl_RSA_Title" Content="RSA" HorizontalAlignment="Left" Height="39" Margin="25,0,0,0" VerticalAlignment="Top" Width="55" FontSize="24"/>
-        <Label x:Name="TxtKey" Content="" Margin="443,7,1,312"></Label>
-        <Label x:Name="Lbl_RSA_KeyMarkerTitle" Content="Key:" HorizontalAlignment="Left" Height="41" Margin="403,-2,0,0" VerticalAlignment="Top" Width="44" FontSize="20"/>
     </Grid>
 
 </Window>
