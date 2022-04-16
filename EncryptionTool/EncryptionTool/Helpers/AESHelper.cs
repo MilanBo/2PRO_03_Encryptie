@@ -33,41 +33,45 @@ namespace EncryptionTool.Helpers
         {
             string keystr = "";
             byte[] key = CryptoServicePr.Key;
-            foreach (var item in key)
+            for (int i = 0; i < key.Length-1; i++)
             {
-                keystr += item;
+                keystr += key[i]+",";
             }
+            keystr += key.Last();
             return keystr;
         }
         public static string GetIV()
         {
-            string ivstr = "";
+            string IVstr = "";
             byte[] IV = CryptoServicePr.IV;
-            foreach (var item in IV)
+            for (int i = 0; i < IV.Length - 1; i++)
             {
-                ivstr += item;
+                IVstr += IV[i] + ",";
             }
-            return ivstr;
+            IVstr += IV.Last();
+            return IVstr;
         }
-        public static string SetKey()
+        public static byte[] SetKey(string key)
         {
-            string keystr = "";
-            byte[] key = CryptoServicePr.Key;
-            foreach (var item in key)
+            byte[] keyByteArray = CryptoServicePr.Key;
+            string[] IVArr = key.Split(',');
+            for (int i = 0; i < key.Length; i++)
             {
-                keystr += item;
+                keyByteArray[i] = Convert.ToByte(IVArr[i]);
             }
-            return keystr;
+            CryptoServicePr.Key = keyByteArray;
+            return keyByteArray;
         }
-        public static string SetIV()
+        public static byte[] SetIV(string IV)
         {
-            string ivstr = "";
-            byte[] IV = CryptoServicePr.IV;
-            foreach (var item in IV)
+            byte[] IVbyte = CryptoServicePr.IV;
+            string[] IVArr = IV.Split(',');
+            for (int i = 0; i < IV.Length; i++)
             {
-                ivstr += item;
+                IVbyte[i] = Convert.ToByte(IVArr[i]);
             }
-            return ivstr;
+            CryptoServicePr.IV = IVbyte;
+            return IVbyte;
         }
 
         public static string Encrypt(string plaintext)
