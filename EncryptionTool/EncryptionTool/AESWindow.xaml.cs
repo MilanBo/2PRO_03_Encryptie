@@ -133,8 +133,8 @@ namespace EncryptionTool
                  AddExtension = true, // extensie wordt toegevoegd
                  DefaultExt = "txt", // standaard extensie
                  FileName = $"{KeyFileName}_AESKey.txt",
-                 InitialDirectory = Environment.CurrentDirectory // onder onze \Debug map
-             };
+                 InitialDirectory = Environment.SpecialFolder.DesktopDirectory.ToString() // onder onze \Debug map
+            };
             if (sfd.ShowDialog() == true) // als de SaveFileDialog getoond kan worden
             {
                 // volledig pad en bestandsnaam opvragen
