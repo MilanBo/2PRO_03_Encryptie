@@ -168,7 +168,8 @@ namespace EncryptionTool
                         string Keystr = sr.ReadLine();
                         string IVstr = sr.ReadLine();
 
-
+                        AESHelper.SetKey(Keystr);
+                        AESHelper.SetIV(IVstr);
                     }
 
                 }

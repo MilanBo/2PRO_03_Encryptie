@@ -10,7 +10,7 @@ namespace EncryptionTool.Helpers
     /// bron : https://www.youtube.com/watch?v=LOmgFxPHop0
     public static class AESHelper
     {
-        public static AesCryptoServiceProvider CryptoServicePr = new AesCryptoServiceProvider()
+        private static AesCryptoServiceProvider CryptoServicePr = new AesCryptoServiceProvider()
         {
             BlockSize = 128,
             KeySize = 128,
@@ -53,25 +53,25 @@ namespace EncryptionTool.Helpers
         }
         public static byte[] SetKey(string key)
         {
-            byte[] keyByteArray = CryptoServicePr.Key;
-            string[] IVArr = key.Split(',');
-            for (int i = 0; i < key.Length; i++)
+            List<byte> keyByteArray = new List<byte> { };
+            string[] KeyArr = key.Split(',');
+            for (int i = 0; i < KeyArr.Length; i++)
             {
-                keyByteArray[i] = Convert.ToByte(IVArr[i]);
+                keyByteArray.Add(Convert.ToByte(KeyArr[i]));
             }
-            CryptoServicePr.Key = keyByteArray;
-            return keyByteArray;
+            CryptoServicePr.Key = keyByteArray.ToArray();
+            return keyByteArray.ToArray();
         }
         public static byte[] SetIV(string IV)
         {
-            byte[] IVbyte = CryptoServicePr.IV;
+            List<byte> IVbyte = new List<byte> { };
             string[] IVArr = IV.Split(',');
-            for (int i = 0; i < IV.Length; i++)
+            for (int i = 0; i < IVArr.Length; i++)
             {
-                IVbyte[i] = Convert.ToByte(IVArr[i]);
+                IVbyte.Add(Convert.ToByte(IVArr[i]));
             }
-            CryptoServicePr.IV = IVbyte;
-            return IVbyte;
+            CryptoServicePr.IV = IVbyte.ToArray();
+            return IVbyte.ToArray();
         }
 
         public static string Encrypt(string plaintext)
