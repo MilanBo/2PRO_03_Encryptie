@@ -158,7 +158,8 @@ namespace EncryptionTool
                 {
                     using (StreamReader reader = new StreamReader(ofd.FileName))
                     {
-                        KeyFileName = reader.ReadToEnd();
+                    //KeyFileName = reader.ReadToEnd();
+                    RSAHelper.PrivateKeyString = reader.ReadToEnd();
                     }
                 }
             }
